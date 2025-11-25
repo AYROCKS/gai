@@ -1,198 +1,147 @@
-Here you go Atharv — **super simple, clean, exam-friendly pseudocode** for all labs.
-Each block is **short**, **easy**, and looks perfect in practicals.
-No unnecessary complexity.
+Perfect — here are **clean, high-quality, viva-ready algorithms** for *all* tasks.
+Short, precise, easy to speak, examiner-friendly.
+(Improved from previous version.)
 
 ---
 
-# ✅ **1. Structured / Semi-structured / Unstructured Data + Ingest CSV & API**
+# ⭐ **1. Algorithm — Explore Structured, Semi-Structured & Unstructured Data + Ingest CSV & API**
 
-### **Pseudocode**
+**Algorithm**
 
-```
-# Load CSV File
-import pandas as pd
-data_csv = read_csv("data.csv")
+1. Start
+2. Identify the data source.
+3. If data has rows and columns, mark it as **structured**.
+4. If data is JSON/XML with tags/keys, mark it as **semi-structured**.
+5. If data is text, images, audio, or video, mark it as **unstructured**.
+6. Import Python libraries (`pandas`, `requests`, `json`).
+7. To ingest CSV:
 
-# Load JSON (Semi-Structured)
-data_json = read_json("data.json")
+   * Use `pandas.read_csv()`
+   * Store the data in a DataFrame
+8. To ingest API data:
 
-# Load Unstructured (text file)
-file = open("notes.txt")
-text_data = file.read()
-
-# Fetch data from API
-import requests
-response = GET("https://api.example.com/data")
-api_data = convert_json(response)
-
-# Display samples
-print(head(data_csv))
-print(head(data_json))
-print(first_100_chars(text_data))
-print(head(api_data))
-```
+   * Send GET request using `requests.get()`
+   * Convert JSON response into a DataFrame
+9. Display the first few rows and data summary
+10. End
 
 ---
 
-# ✅ **2. Data Cleaning (Missing values, rename cols, type change, join)**
+# ⭐ **2. Algorithm — Data Cleaning (Missing Values, Rename, Type Change, Join)**
 
-### **Pseudocode**
+**Algorithm**
 
-```
-import pandas as pd
+1. Start
+2. Load dataset(s) into DataFrames
+3. Check missing values using `.isnull().sum()`
+4. Handle missing values:
 
-data = read_csv("data.csv")
-
-# Handle missing values
-data.fillna("Unknown")
-data.dropna()
-
-# Rename columns
-data.rename({"old_name": "new_name"})
-
-# Change data types
-data["age"] = data["age"].astype(int)
-
-# Load second dataset
-data2 = read_csv("data2.csv")
-
-# Join datasets
-merged = merge(data, data2, on="id")
-
-print(merged)
-```
+   * If numeric → fill with mean/median
+   * If categorical → fill with mode
+   * Or drop rows/columns
+5. Rename columns using `.rename()`
+6. Convert data types using `.astype()`
+7. Join multiple datasets using `merge()` or `concat()`
+8. Verify the cleaned dataset
+9. End
 
 ---
 
-# ✅ **3. Data Profiling + Feature Engineering**
+# ⭐ **3. Algorithm — Data Profiling & Feature Engineering**
 
-### **Pseudocode**
+**Algorithm**
 
-```
-data = read_csv("data.csv")
+1. Start
+2. Load dataset
+3. Perform data profiling:
 
-# Basic Profiling
-print(data.shape)
-print(data.info())
-print(data.describe())
-
-# Feature Selection
-selected = data[["age", "income", "gender"]]
-
-# Encoding categorical
-from sklearn.preprocessing import LabelEncoder
-encoder = LabelEncoder()
-data["gender_encoded"] = encoder.fit_transform(data["gender"])
-
-# Scaling features
-from sklearn.preprocessing import StandardScaler
-scaler = StandardScaler()
-data_scaled = scaler.fit_transform(data[["age","income"]])
-```
+   * Check shape, column names
+   * Summary statistics
+   * Data types
+   * Missing value report
+4. Select features based on relevance and correlation
+5. Apply encoding for categorical variables
+6. Apply scaling for numeric features
+7. Store the processed dataset
+8. End
 
 ---
 
-# ✅ **4. Exploratory Data Analysis (EDA)**
+# ⭐ **4. Algorithm — EDA Using Matplotlib & Seaborn**
 
-### **Pseudocode**
+**Algorithm**
 
-```
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-data = read_csv("data.csv")
-
-# Histogram
-plt.hist(data["age"])
-
-# Boxplot
-sns.boxplot(x=data["income"])
-
-# Pair plot
-sns.pairplot(data)
-
-# Heatmap
-sns.heatmap(data.corr())
-```
+1. Start
+2. Load dataset
+3. Identify numerical and categorical columns
+4. Plot histograms to study distributions
+5. Plot boxplots to identify outliers
+6. Plot pairplots to observe relationships
+7. Compute correlation matrix
+8. Plot heatmap to visualize correlations
+9. Interpret patterns and insights
+10. End
 
 ---
 
-# ✅ **5. Build an ETL Pipeline (Extract → Transform → Load)**
+# ⭐ **5. Algorithm — ETL Pipeline (Extract → Transform → Load)**
 
-### **Pseudocode**
+**Algorithm**
 
-```
-# Extract
-csv_data = read_csv("input.csv")
-api_data = GET("https://api.example.com/users")
-api_data = json_to_dataframe(api_data)
+1. Start
+2. Extract data from CSV/API
+3. Transform data:
 
-# Transform
-cleaned = csv_data.dropna()
-cleaned["age"] = cleaned["age"].astype(int)
+   * Clean missing values
+   * Rename or remove columns
+   * Change data types
+   * Create new features if needed
+4. Load data into:
 
-# Combine both datasets
-final = concatenate(cleaned, api_data)
-
-# Load to CSV
-final.to_csv("output.csv")
-
-# Load to SQLite
-import sqlite3
-conn = connect("database.db")
-final.to_sql("users_table", conn)
-```
+   * CSV using `to_csv()`
+   * OR SQLite using `to_sql()`
+5. Validate the loaded data
+6. End
 
 ---
 
-# ✅ **6. Power BI — Import + Dashboard**
+# ⭐ **6. Algorithm — Power BI Import & Dashboard Creation**
 
-*(Power BI has no code, so pseudocode style)*
+**Algorithm**
 
-### **Pseudocode Steps**
-
-```
-Open Power BI Desktop
-Load data → "Import Data" → choose CSV dataset
-Clean data using Power Query:
-    - Remove nulls
-    - Change data types
-Create Visuals:
-    - Bar chart → Sales by Category
-    - Pie chart → Sales by Region
-    - Map → Customer locations
-Add Filters:
-    - Slicer for Year
-    - Slicer for Product Type
-Save Dashboard
-```
+1. Start
+2. Open Power BI Desktop
+3. Click **Get Data** and import dataset
+4. Use Power Query for cleaning if required
+5. Load data into Power BI model
+6. Create visuals (bar chart, pie chart, map)
+7. Add slicers and filters for interactivity
+8. Arrange visuals into a dashboard layout
+9. Save or publish report
+10. End
 
 ---
 
-# ✅ **7. Data Warehouse vs Data Lake vs Lakehouse Simulation**
+# ⭐ **7. Algorithm — Data Warehouse vs Data Lake vs Lakehouse Simulation**
 
-### **Pseudocode**
+**Algorithm**
 
-```
-data = read_csv("dataset.csv")
+1. Start
+2. Select a sample dataset
+3. Save dataset in:
 
-# Save to Warehouse (Structured → SQL Table)
-save_to_sql("warehouse.db", table="sales", data)
+   * Structured format (CSV/SQL) → Data Warehouse
+   * Raw format (JSON/CSV/Parquet) → Data Lake
+   * Combined structured + raw format → Lakehouse
+4. Compare the three systems based on:
 
-# Save to Data Lake (Raw files)
-save_as("lake/sales_raw.csv", data)
-
-# Save to Lakehouse (Parquet format)
-save_as_parquet("lakehouse/sales.parquet", data)
-
-# Comparison report (short)
-print("Warehouse = structured, schema-on-write")
-print("Lake = raw data, schema-on-read")
-print("Lakehouse = mix of both, supports BI + ML")
-```
+   * Schema
+   * Storage
+   * Processing
+   * Use cases
+5. Write a comparison report
+6. End
 
 ---
 
-# 🟢 Done!
-
-If you want, I can convert this into **Notion format**, **PDF**, or **exam-ready handwritten style**.
+If you want, I can also convert these into **flowcharts**, **pseudocode**, **short viva answers**, or **file-ready formatted notes**.
